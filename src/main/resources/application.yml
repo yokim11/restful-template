@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: maap-restapi-template
+  datasource:
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sampledb?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&connectTimeout=2000&autoReconnect=true&serverTimezone=UTC&useSSL=false
+    username: maap_dev
+    password: maap@2018
+    connection-test-query: "SELECT 1"
+    test-while-idle: true
+    test-on-borrow: true
+    tomcat:
+      max-idle: 10
+      max-total: 10
+      min-idle: 10
+      time-between-eviction-runs-millis: 3000
+      initial-size: 10
+  boot:
+    admin:
+      url: http://localhost:8080
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+management:
+  security:
+    enabled: false
+  address: 
+
+security:
+  basic:
+    enabled: false
+
+
+
+logging:
+  level:
+    com:
+      skt:
+        tts:
+          user:
+            api: debug
+  pattern:
+    level: '%X{mdcData}%5p'
+
+
+
+# eureka를 사용하고자 할때에 풀어서 사용하기.
+# TtsTaxiDomainApplication 의 Annotation도 같이 풀어야함.
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 2
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8761/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5
+
+
