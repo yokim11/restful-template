@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import com.demo.appname.api.controller.v1.demo.model.DemoVo;
+import com.demo.appname.api.controller.v1.demo.model.DemoDto;
 import com.demo.appname.api.domain.demo.model.Demo;
 
 @Mapper
@@ -23,7 +23,7 @@ public interface DemoRepository {
     void insertUserByAnnotation(@Param("name") String name);
 
     @Select("SELECT * FROM tbl_demo WHERE id = #{id}")
-    DemoVo findById(@Param("id") Long id);
+    DemoDto findById(@Param("id") Long id);
 
     @Select("SELECT * FROM tbl_demo WHERE name in (#{name})")
     List<Demo> findByUserNames(@Param("name") String[] name);

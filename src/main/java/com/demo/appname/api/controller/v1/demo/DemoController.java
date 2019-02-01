@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.appname.api.common.helper.ModelMapperHelper;
-import com.demo.appname.api.controller.v1.demo.model.DemoVo;
+import com.demo.appname.api.controller.v1.demo.mapper.DemoMapper;
+import com.demo.appname.api.controller.v1.demo.model.DemoDto;
 import com.demo.appname.api.domain.demo.DemoService;
 import com.demo.appname.api.domain.demo.model.Demo;
 
@@ -30,9 +30,9 @@ public class DemoController {
     private DemoService demoService;
 
     @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    public <T> ResponseEntity<List<DemoVo>> demos() {
+    public <T> ResponseEntity<List<DemoDto>> demos() {
         List<Demo> userList = demoService.getUserList();
-        return ResponseEntity.ok(ModelMapperHelper.mapList(userList, DemoVo.class));
+        return ResponseEntity.ok(DemoMapper.getMapper().demoListToDemoDtoList(userList));
     }
 
     @PostMapping(value = "/users/{name}")
@@ -40,13 +40,12 @@ public class DemoController {
         log.info("Insert User {}", name);
         String result = demoService.insertUser(name);
         log.info("After Insert User {}", name);
-
         return result;
     }
 
     @GetMapping(value = "/users/names")
-    public <T> ResponseEntity<List<DemoVo>> findByUserNames(@RequestParam(value = "names") String[] names) {
+    public <T> ResponseEntity<List<DemoDto>> findByUserNames(@RequestParam(value = "names") String[] names) {
     	List<Demo> userList = demoService.getUserListByNames(names);
-    	return ResponseEntity.ok(ModelMapperHelper.mapList(userList, DemoVo.class));
+    	return ResponseEntity.ok(DemoMapper.getMapper().demoListToDemoDtoList(userList));
     }
 }
