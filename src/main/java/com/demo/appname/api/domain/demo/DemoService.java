@@ -29,18 +29,19 @@ public class DemoService {
         return userList;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public String insertUser(String name) {
         demoRepository.insertUserByAnnotation(name);
 
         return "Creating User Info Done " + name;
     }
 
-    @Transactional
+    @Transactional(readOnly = false)
     public void updateUserNameById(String userName, Long id) {
         demoRepository.updateUserNameById(userName, id);
     }
 
+    @Transactional(readOnly = true)
     public List<DemoVo> getUserListByNames(String[] userNames) {
         List<DemoVo> userList = demoRepository.findByUserNamesListWithQuery(Stream.of(userNames).collect(Collectors.toList()));
         return userList;
