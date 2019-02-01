@@ -4,12 +4,12 @@
 <!-- 참고해서 작성하기 : http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html-->
 <mapper namespace="com.demo.appname.api.domain.demo.DemoRepository">
 
-    <select id="getUserList" resultType="DemoVo">
+    <select id="getUserList" resultType="Demo">
         SELECT id, name FROM tbl_demo
     </select>
 
     <!--배열로 전달한경우-->
-    <select id="findByUserNamesListWithQuery" resultType="DemoVo">
+    <select id="findByUserNamesListWithQuery" resultType="Demo">
         SELECT *
         FROM tbl_demo
         WHERE name IN
@@ -19,7 +19,7 @@
     </select>
 
     <!--배열로 전달한경우-->
-    <select id="findBynamesListWithQuery" resultType="DemoVo">
+    <select id="findBynamesListWithQuery" resultType="Demo">
         SELECT *
         FROM tbl_demo
         WHERE name IN
@@ -28,12 +28,12 @@
           </foreach>
     </select>
 
-    <insert id="inserUserWithQuery" parameterType="DemoVo">
+    <insert id="inserUserWithQuery" parameterType="Demo">
         INSERT INTO tbl_demo (name)
         VALUES (#{name})
     </insert>
 
-    <update id="updateUserWithQuery" parameterType="DemoVo">
+    <update id="updateUserWithQuery" parameterType="Demo">
         UPDATE tbl_demo
         SET
           name = #{name}
@@ -45,7 +45,7 @@
         WHERE id = #{id}
     </delete>
 
-    <insert id="insertUsersWithQuery" parameterType="DemoVo">
+    <insert id="insertUsersWithQuery" parameterType="Demo">
         INSERT INTO tbl_demo(name)
         <foreach collection="list" item="user" separator=",">
             (#{user.name})

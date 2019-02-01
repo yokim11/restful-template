@@ -1,4 +1,4 @@
-package com.demo.appname.api.common.config;
+package com.demo.appname.api.common.config.database;
 
 import java.util.HashMap;
 import java.util.Map;

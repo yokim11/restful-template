@@ -1,4 +1,4 @@
-package com.demo.appname.api.domain.demo.model;
+package com.demo.appname.api.controller.v1.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.demo.appname.api.domain;
+package com.demo.appname.api.controller.v1;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;

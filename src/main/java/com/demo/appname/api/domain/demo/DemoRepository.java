@@ -10,13 +10,14 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import com.demo.appname.api.domain.demo.model.DemoVo;
+import com.demo.appname.api.controller.v1.demo.model.DemoVo;
+import com.demo.appname.api.domain.demo.model.Demo;
 
 @Mapper
 @Repository
 public interface DemoRepository {
 
-    List<DemoVo> getUserList();
+    List<Demo> getUserList();
 
     @Insert("INSERT INTO tbl_demo(name) VALUES (#{name})")
     void insertUserByAnnotation(@Param("name") String name);
@@ -25,11 +26,11 @@ public interface DemoRepository {
     DemoVo findById(@Param("id") Long id);
 
     @Select("SELECT * FROM tbl_demo WHERE name in (#{name})")
-    List<DemoVo> findByUserNames(@Param("name") String[] name);
+    List<Demo> findByUserNames(@Param("name") String[] name);
 
-    List<DemoVo> findByUserNamesWithQuery(String[] usernames);
+    List<Demo> findByUserNamesWithQuery(String[] usernames);
 
-    List<DemoVo> findByUserNamesListWithQuery(List<String> usernames);
+    List<Demo> findByUserNamesListWithQuery(@Param("array") List<String> usernames);
 
     @Delete("DELETE FROM tbl_demo WHERE id = #{id}")
     void deleteById(@Param("id") Long id);
@@ -37,5 +38,5 @@ public interface DemoRepository {
     @Update("UPDATE tbl_demo SET name = #{name} WHERE id = #{id}")
     void updateUserNameById(@Param("name") String name, @Param("id") Long id);
 
-    void insertUsers(List<DemoVo> users);
+    void insertUsers(List<Demo> users);
 }

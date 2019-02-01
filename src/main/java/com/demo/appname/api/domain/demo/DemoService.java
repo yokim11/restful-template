@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.appname.api.domain.demo.model.DemoVo;
+import com.demo.appname.api.domain.demo.model.Demo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,9 +19,9 @@ public class DemoService {
     @Autowired
     private DemoRepository demoRepository;
 
-    public List<DemoVo> getUserList() {
+    public List<Demo> getUserList() {
         log.info("start Demo");
-        List<DemoVo> userList = demoRepository.getUserList();
+        List<Demo> userList = demoRepository.getUserList();
         log.debug("{}", userList);
         log.info("after getUserList");
         //String collect = listToStringBySeperator(userList, "|");
@@ -29,7 +29,7 @@ public class DemoService {
         return userList;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = false)
     public String insertUser(String name) {
         demoRepository.insertUserByAnnotation(name);
 
@@ -42,8 +42,8 @@ public class DemoService {
     }
 
     @Transactional(readOnly = true)
-    public List<DemoVo> getUserListByNames(String[] userNames) {
-        List<DemoVo> userList = demoRepository.findByUserNamesListWithQuery(Stream.of(userNames).collect(Collectors.toList()));
+    public List<Demo> getUserListByNames(String[] userNames) {
+        List<Demo> userList = demoRepository.findByUserNamesListWithQuery(Stream.of(userNames).collect(Collectors.toList()));
         return userList;
     }
 
