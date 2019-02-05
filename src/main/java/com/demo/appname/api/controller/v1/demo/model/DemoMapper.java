@@ -1,11 +1,10 @@
-package com.demo.appname.api.controller.v1.demo.mapper;
+package com.demo.appname.api.controller.v1.demo.model;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.demo.appname.api.controller.v1.demo.model.DemoDto;
 import com.demo.appname.api.domain.demo.model.Demo;
 
 @Mapper

@@ -1,65 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 참고해서 작성하기 : http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html-->
-<mapper namespace="com.demo.appname.api.domain.demo.DemoRepository">
+<!-- 참고해서 작성하기 : http://www.mybatis.org/mybatis-3/ko/sqlmap-xml.html -->
+<mapper
+	namespace="com.demo.appname.api.domain.demo.DemoRepository">
 
-    <select id="getUserList" resultType="Demo">
-        SELECT id, name FROM tbl_demo
-    </select>
+	<select id="getUserList" resultType="Demo">
+		SELECT id, name FROM tbl_demo
+	</select>
 
-    <!--배열로 전달한경우-->
-    <select id="findByUserNamesListWithQuery" resultType="Demo">
-        SELECT *
-        FROM tbl_demo
-        WHERE name IN
-          <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
-              '${array[index]}'
-          </foreach>
-    </select>
+	<!--배열로 전달한경우 -->
+	<select id="findByUserNamesListWithQuery" resultType="Demo">
+		SELECT *
+		FROM tbl_demo
+		WHERE name IN
+		<foreach collection="array" item="item" index="index" open="("
+			close=")" separator=",">
+			'${array[index]}'
+		</foreach>
+	</select>
 
-    <!--배열로 전달한경우-->
-    <select id="findBynamesListWithQuery" resultType="Demo">
-        SELECT *
-        FROM tbl_demo
-        WHERE name IN
-          <foreach collection="list" item="item" index="index"  open="(" close=")" separator=",">
-              '${item}'
-          </foreach>
-    </select>
+	<!--배열로 전달한경우 -->
+	<select id="findBynamesListWithQuery" resultType="Demo">
+		SELECT *
+		FROM tbl_demo
+		WHERE name IN
+		<foreach collection="list" item="item" index="index" open="("
+			close=")" separator=",">
+			'${item}'
+		</foreach>
+	</select>
 
-    <insert id="inserUserWithQuery" parameterType="Demo">
-        INSERT INTO tbl_demo (name)
-        VALUES (#{name})
-    </insert>
+	<insert id="inserUserWithQuery" parameterType="Demo">
+		INSERT INTO tbl_demo (name)
+		VALUES (#{name})
+	</insert>
 
-    <update id="updateUserWithQuery" parameterType="Demo">
-        UPDATE tbl_demo
-        SET
-          name = #{name}
-        WHERE id = #{id}
-    </update>
+	<update id="updateUserWithQuery" parameterType="Demo">
+		UPDATE tbl_demo
+		SET
+		name = #{name}
+		WHERE id = #{id}
+	</update>
 
-    <delete id="delteUserWithQuery" parameterType="int">
-        DELETE FROM tbl_demo
-        WHERE id = #{id}
-    </delete>
+	<delete id="delteUserWithQuery" parameterType="int">
+		DELETE FROM tbl_demo
+		WHERE id = #{id}
+	</delete>
 
-    <insert id="insertUsersWithQuery" parameterType="Demo">
-        INSERT INTO tbl_demo(name)
-        <foreach collection="list" item="user" separator=",">
-            (#{user.name})
-        </foreach>
-    </insert>
+	<insert id="insertUsersWithQuery" parameterType="Demo">
+		INSERT INTO tbl_demo(name)
+		<foreach collection="list" item="user" separator=",">
+			(#{user.name})
+		</foreach>
+	</insert>
 
-    <!--복잡한 자바코드 없이 키를 새로따고 새로딴 키를 인서트 시키는 방법 -->
-    <!--<insert id="insertAuthor">-->
-        <!--<selectKey keyProperty="id" resultType="int" order="BEFORE">-->
-            <!--select CAST(RANDOM()*1000000 as INTEGER) a from SYSIBM.SYSDUMMY1-->
-        <!--</selectKey>-->
-        <!--insert into Author-->
-        <!--(id, name, password, email,bio, favourite_section)-->
-        <!--values-->
-        <!--(#{id}, #{name}, #{password}, #{email}, #{bio}, #{favouriteSection,jdbcType=VARCHAR})-->
-    <!--</insert>-->
+	<!--복잡한 자바코드 없이 키를 새로따고 새로딴 키를 인서트 시키는 방법 -->
+	<!--<insert id="insertAuthor"> -->
+	<!--<selectKey keyProperty="id" resultType="int" order="BEFORE"> -->
+	<!--select CAST(RANDOM()*1000000 as INTEGER) a from SYSIBM.SYSDUMMY1 -->
+	<!--</selectKey> -->
+	<!--insert into Author -->
+	<!--(id, name, password, email,bio, favourite_section) -->
+	<!--values -->
+	<!--(#{id}, #{name}, #{password}, #{email}, #{bio}, #{favouriteSection,jdbcType=VARCHAR}) -->
+	<!--</insert> -->
 </mapper>

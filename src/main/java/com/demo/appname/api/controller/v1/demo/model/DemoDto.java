@@ -2,10 +2,8 @@ package com.demo.appname.api.controller.v1.demo.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
 public class DemoDto {

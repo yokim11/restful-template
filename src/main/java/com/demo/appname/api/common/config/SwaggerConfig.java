@@ -1,9 +1,18 @@
 package com.demo.appname.api.common.config;
 
-import com.google.common.base.Predicate;
+import static com.google.common.base.Predicates.containsPattern;
+import static com.google.common.base.Predicates.or;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.google.common.base.Predicate;
+
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.ModelRef;
@@ -13,13 +22,6 @@ import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static com.google.common.base.Predicates.containsPattern;
-import static com.google.common.base.Predicates.or;
 
 @Configuration
 @EnableSwagger2
@@ -43,14 +45,14 @@ public class SwaggerConfig {
 
     private List<ResponseMessage> serverErrorResponseMessages() {
         List<ResponseMessage> messages = new ArrayList<>();
-        createNotValid(messages, 500, "Internal Server Error", "ServerErrorResponseDto");
+        createNotValid(messages, 500, "Internal Server Error", "ErrorResponseDto");
         return messages;
     }
 
     private List<ResponseMessage> responseMessages() {
         List<ResponseMessage> messages = new ArrayList<>();
-        createNotValid(messages, 500, "Internal Server Error", "ServerErrorResponseDto");
-        createNotValid(messages, 400, "ArgumentNotValid Error", "NotValidErrorResponseDto");
+        createNotValid(messages, 500, "Internal Server Error", "ErrorResponseDto");
+        createNotValid(messages, 400, "ArgumentNotValid Error", "ErrorResponseDto");
         return messages;
     }
 
