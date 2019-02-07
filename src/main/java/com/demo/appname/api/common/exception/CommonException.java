@@ -14,11 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ControllerAdvice
-public class GlobalExceptionHandlingControllerAdvice {
+public class CommonException {
 
 	public static final String DEFAULT_ERROR_MESSAGE = "예상치 못한 오류 - 오류 코드 없음 ";
 	
-	public GlobalExceptionHandlingControllerAdvice() {
+	public CommonException() {
 	}
 	
 	@ExceptionHandler({ DataNotFoundException.class })

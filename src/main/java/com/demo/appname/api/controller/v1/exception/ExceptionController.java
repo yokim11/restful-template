@@ -1,4 +1,4 @@
-package com.demo.appname.api.controller.v1;
+package com.demo.appname.api.controller.v1.exception;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
