@@ -1,0 +1,62 @@
+spring:
+  profiles: local
+  application:
+    name: restapi-template
+
+  datasource:
+    sampledb:
+      master:
+        hikari:
+          jdbc-url: jdbc:mysql://localhost:3306/sampledb?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&connectTimeout=2000&autoReconnect=true&serverTimezone=UTC&useSSL=false
+          username: sample
+          password: sample
+          driver-class-name: com.mysql.jdbc.Driver
+          pool-name: master-hikari-cp
+          connection-test-query: "SELECT 1"
+          maximum-pool-size: 50
+          minimum-idle: 5
+      slave:
+        hikari:
+          jdbc-url: jdbc:mysql://localhost:3306/sampledb?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&connectTimeout=2000&autoReconnect=true&serverTimezone=UTC&useSSL=false
+          username: sample
+          password: sample
+          driver-class-name: com.mysql.jdbc.Driver
+          pool-name: master-hikari-cp
+          connection-test-query: "SELECT 1"
+          maximum-pool-size: 50
+          minimum-idle: 5
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+
+
+logging:
+  level:
+    com:
+      demo:
+        appname:
+          api: debug
+  pattern:
+    level: '%X{mdcData}%5p'
+
+
+# eureka를 사용하고자 할때에 풀어서 사용하기.
+# TtsTaxiDomainApplication 의 Annotation도 같이 풀어야함.
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 1
+#    leaseExpirationDurationInSeconds: 2
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8761/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5
+
+
