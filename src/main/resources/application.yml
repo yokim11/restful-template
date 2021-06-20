@@ -8,8 +8,8 @@ spring:
       master:
         hikari:
           jdbc-url: jdbc:mysql://localhost:3306/sampledb?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&connectTimeout=2000&autoReconnect=true&serverTimezone=UTC&useSSL=false
-          username: sample
-          password: sample
+          username: demouser
+          password: password
           driver-class-name: com.mysql.jdbc.Driver
           pool-name: master-hikari-cp
           connection-test-query: "SELECT 1"
@@ -18,8 +18,8 @@ spring:
       slave:
         hikari:
           jdbc-url: jdbc:mysql://localhost:3306/sampledb?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&connectTimeout=2000&autoReconnect=true&serverTimezone=UTC&useSSL=false
-          username: sample
-          password: sample
+          username: demouser
+          password: password
           driver-class-name: com.mysql.jdbc.Driver
           pool-name: master-hikari-cp
           connection-test-query: "SELECT 1"
